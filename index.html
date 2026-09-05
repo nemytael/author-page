@@ -2,14 +2,467 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Nemy Tael</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nemy Tael — Queer Romance Author</title>
+  
+
+  <!-- Elegant fonts (loaded online; fallbacks are used offline) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
-    body { font-family: sans-serif; max-width: 700px; margin: 60px auto; padding: 0 20px; }
-    h1 { color: #2c3e50; }
+    /* ====================== Palette ====================== */
+    :root {
+      --violet: #756DF2;
+      --violet-deep: #5548d6;
+      --magenta: #D468D2;
+      --magenta-deep: #b53fae;
+      --lilac: #a56be2;
+      --pink: var(--magenta);
+      --pink-soft: #f6e4f6;
+      --rose: var(--magenta);
+      --rose-deep: var(--magenta-deep);
+      --blue: var(--violet);
+      --blue-soft: #e8e6fc;
+      --blue-deep: var(--violet-deep);
+      --ink: #2a2140;
+      --muted: #7d6f94;
+      --paper: #f5f3f9;
+      --card: #ffffff;
+      --line: #e6e0ef;
+      --grad: linear-gradient(90deg, #756DF2 0%, #A56BE2 50%, #D468D2 100%);
+      --grad-text: linear-gradient(90deg, #5548d6, #8a4fd0, #b53fae);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Nunito", "Segoe UI", Helvetica, Arial, sans-serif;
+      font-weight: 300;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.75;
+    }
+    h1, h2, h3, h4 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; line-height: 1.2; }
+    a { color: var(--rose-deep); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    .script { font-family: "Great Vibes", "Brush Script MT", cursive; font-weight: 400; }
+
+    /* ====================== Banner ====================== */
+    header {
+      position: relative;
+      background: var(--grad);
+      text-align: center;
+      padding: 46px 24px 50px;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    /* ====================== Tabs ====================== */
+    nav {
+      position: sticky; top: 0; z-index: 20;
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+    }
+    nav .nav-inner { max-width: 1080px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    nav .brand { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+    nav .brand img { height: 42px; width: auto; }
+    nav .brand span { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.25rem; letter-spacing: .08em; color: var(--ink); }
+    nav ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; }
+    nav button {
+      background: none; white-space: nowrap; border: none; cursor: pointer;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.15rem; letter-spacing: .14em; text-transform: uppercase;
+      padding: 16px 18px; color: var(--muted); position: relative; transition: color .25s;
+    }
+    nav button::after {
+      content: ""; position: absolute; left: 18px; right: 18px; bottom: 9px; height: 2px;
+      background: var(--grad); border-radius: 2px; transform: scaleX(0); transition: transform .3s;
+    }
+    nav button:hover { color: var(--ink); }
+    nav button.active { color: var(--ink); }
+    nav button.active::after { transform: scaleX(1); }
+
+    /* ====================== Panels ====================== */
+    .tab-panel { display: none; padding: 70px 0 100px; animation: fade .5s ease; }
+    .tab-panel.active { display: block; }
+    @keyframes fade { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: none;} }
+    .panel-head { text-align: center; margin-bottom: 50px; }
+    .panel-head h2 {
+      font-size: 3rem;
+      background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent;
+      display: inline-block;
+    }
+    .panel-head .sub { font-style: italic; color: var(--muted); font-family: "Cormorant Garamond", serif; font-size: 1.3rem; }
+    .panel-head .line { width: 70px; height: 2px; background: var(--grad); margin: 16px auto 0; border-radius: 2px; }
+
+    /* Buttons */
+    .btn {
+      display: inline-block; padding: 11px 26px; border-radius: 999px; border: none; cursor: pointer;
+      font-family: "Nunito", sans-serif; font-weight: 600; font-size: .82rem; letter-spacing: .12em; text-transform: uppercase;
+      color: #fff; background: linear-gradient(90deg, var(--magenta), var(--violet));
+      background-size: 200% 100%; transition: background-position .4s, transform .2s, box-shadow .2s;
+      box-shadow: 0 8px 20px rgba(117,109,242,.35);
+    }
+    .btn:hover { background-position: 100% 0; transform: translateY(-2px); text-decoration: none; box-shadow: 0 12px 26px rgba(212,104,210,.4); }
+    .btn.ghost { background: transparent; color: var(--rose-deep); border: 1px solid var(--pink); box-shadow: none; }
+    .btn.ghost:hover { background: var(--pink-soft); }
+
+    /* ====================== Books / Series ====================== */
+    .filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 50px; }
+    .chip {
+      padding: 8px 20px; border-radius: 999px; border: 1px solid var(--line); background: var(--card);
+      font-size: .85rem; letter-spacing: .06em; cursor: pointer; color: var(--muted); transition: all .25s;
+    }
+    .chip:hover { border-color: var(--pink); color: var(--ink); }
+    .chip.active { background: var(--grad); color: #fff; border-color: transparent; box-shadow: 0 6px 16px rgba(165,107,226,.4); }
+
+    .series { margin-bottom: 80px; }
+    .series-head { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; margin-bottom: 8px; }
+    .series-head h3 { font-size: 2.2rem; }
+    .series-head .tag {
+      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px;
+      background: var(--pink-soft); color: var(--rose-deep);
+    }
+    .series-head .tag.blue { background: var(--blue-soft); color: var(--blue-deep); }
+    .series-desc { color: var(--muted); font-style: italic; font-family: "Cormorant Garamond", serif; font-size: 1.15rem; max-width: 720px; margin-bottom: 30px; }
+
+    .books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 34px; }
+    .book {
+      background: var(--card); border-radius: 18px; padding: 18px; border: 1px solid var(--line);
+      display: flex; flex-direction: column; transition: transform .3s, box-shadow .3s;
+    }
+    .book:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(117,109,242,.15); }
+    .cover {
+      aspect-ratio: 2/3; border-radius: 12px; overflow: hidden; margin-bottom: 16px; position: relative;
+      display: flex; align-items: flex-end; padding: 18px; color: #fff;
+      font-family: "Cormorant Garamond", serif; font-size: 1.35rem; line-height: 1.2;
+      box-shadow: inset 0 -80px 80px -40px rgba(0,0,0,.35);
+    }
+    .cover.has-img { box-shadow: 0 10px 24px rgba(42,33,64,.18); background: #eee; }
+    .cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cover .num {
+      position: absolute; top: 12px; left: 12px; width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(255,255,255,.85); color: var(--rose-deep); font-family: "Nunito", sans-serif; font-weight: 600; font-size: .85rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .book h4 { font-size: 1.35rem; }
+    .book .meta { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 2px 0 10px; }
+    .book p { font-size: .92rem; flex-grow: 1; color: #5b4f5e; }
+    .book .tropes { margin: 12px 0 2px; display: flex; flex-wrap: wrap; gap: 6px; }
+    .book .tropes span { font-size: .7rem; padding: 3px 10px; border-radius: 999px; background: var(--blue-soft); color: var(--blue-deep); }
+
+    /* ====================== About ====================== */
+    .about { display: grid; grid-template-columns: 300px 1fr; gap: 60px; align-items: start; }
+    .portrait-wrap { position: relative; }
+    .portrait {
+      width: 100%; aspect-ratio: 4/5; border-radius: 160px 160px 18px 18px; overflow: hidden;
+      background: var(--grad); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 5rem;
+      box-shadow: 0 25px 50px rgba(117,109,242,.25);
+    }
+    .portrait img { width: 100%; height: 100%; object-fit: cover; }
+    .portrait-wrap::after {
+      content: ""; position: absolute; inset: 14px -14px -14px 14px; border: 1px solid var(--pink); border-radius: 160px 160px 18px 18px; z-index: -1;
+    }
+    .about-text p { margin-bottom: 18px; font-size: 1.05rem; }
+    .about-text .lead { font-family: "Cormorant Garamond", serif; font-size: 1.6rem; line-height: 1.4; color: var(--ink); }
+    blockquote {
+      margin: 30px 0; padding: 26px 30px; background: var(--card); border-radius: 18px; border: 1px solid var(--line);
+      font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 1.35rem; color: var(--rose-deep); position: relative;
+    }
+    blockquote::before { content: "“"; position: absolute; top: -18px; left: 18px; font-size: 4rem; color: var(--pink); line-height: 1; }
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 30px; }
+    .fact { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; text-align: center; }
+    .fact b { display: block; font-family: "Cormorant Garamond", serif; font-size: 2rem; color: var(--blue-deep); font-weight: 500; }
+    .fact span { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+    /* ====================== Contact ====================== */
+    .contact { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; }
+    .contact-card { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 36px; }
+    .contact-card h3 { font-size: 1.8rem; margin-bottom: 18px; }
+    .contact-card p { margin-bottom: 16px; }
+    .contact-card small { display: block; font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); }
+    .socials { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .socials a {
+      padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line); font-size: .82rem; letter-spacing: .05em; color: var(--ink); transition: all .25s;
+    }
+    .socials a:hover { background: var(--pink-soft); border-color: var(--pink); text-decoration: none; }
+    form label { display: block; font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    form input, form textarea {
+      width: 100%; padding: 13px 16px; margin-bottom: 20px; border: 1px solid var(--line); border-radius: 12px;
+      background: #fff; font: inherit; font-size: 1rem; color: var(--ink); transition: border-color .2s, box-shadow .2s;
+    }
+    form input:focus, form textarea:focus { outline: none; border-color: var(--pink); box-shadow: 0 0 0 4px var(--pink-soft); }
+    form textarea { min-height: 150px; resize: vertical; }
+
+    /* ====================== Shop ====================== */
+    .shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 30px; }
+    .product {
+      background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 26px; text-align: center;
+      transition: transform .3s, box-shadow .3s; position: relative; overflow: hidden;
+    }
+    .product::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--grad); }
+    .product:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(212,104,210,.15); }
+    .product .thumb { height: 150px; margin: 6px 0 18px; border-radius: 14px; background: linear-gradient(135deg, var(--pink-soft), var(--blue-soft)); display: flex; align-items: center; justify-content: center; font-size: 2.8rem; }
+    .product h4 { font-size: 1.3rem; }
+    .product .desc { font-size: .85rem; color: var(--muted); }
+    .product .price { font-family: "Cormorant Garamond", serif; font-size: 1.7rem; color: var(--rose-deep); margin: 10px 0 14px; }
+    .product .badge { position: absolute; top: 16px; right: 16px; font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; background: var(--rose-deep); color: #fff; padding: 4px 10px; border-radius: 999px; }
+    .note {
+      margin-top: 50px; padding: 26px 30px; border-radius: 18px; background: var(--card); border: 1px solid var(--line);
+      text-align: center; font-size: .95rem; color: var(--muted);
+    }
+
+    /* ====================== Footer ====================== */
+    footer { text-align: center; padding: 40px 24px; background: #ebe7f2; border-top: 1px solid #ded8ea; margin-top: 20px; font-size: .82rem; color: var(--muted); letter-spacing: .05em; }
+    footer .script { font-size: 1.8rem; color: var(--rose-deep); display: block; margin-bottom: 6px; }
+
+    /* ====================== Responsive ====================== */
+    @media (max-width: 760px) {
+      header { padding: 26px 20px 30px; }
+      header h1 { font-size: 2.4rem; }
+      header .tagline { font-size: 1.4rem; }
+      nav .nav-inner { flex-direction: column; padding: 10px 12px 0; }
+      nav .brand img { height: 34px; }
+      nav button { padding: 12px 10px; font-size: .95rem; letter-spacing: .08em; }
+      nav button::after { left: 12px; right: 12px; }
+      .panel-head h2 { font-size: 2.3rem; }
+      .about, .contact { grid-template-columns: 1fr; }
+      .portrait-wrap { max-width: 260px; margin: 0 auto 10px; }
+      .facts { grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    }
   </style>
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <p>Welcome to my first website hosted on GitHub Pages.</p>
-</body>
+
+  <!-- ====================== TABS ====================== -->
+  <nav>
+    <div class="nav-inner">
+    <div class="brand" onclick="openTab('books')">
+      <img src="images/logo-color.png" alt="NT logo">
+      <span>Nemy Tael</span>
+    </div>
+    <ul>
+      <li><button class="tab-link active" data-tab="books">Books</button></li>
+      <li><button class="tab-link" data-tab="about">About the author</button></li>
+      <li><button class="tab-link" data-tab="contact">Contact</button></li>
+      <li><button class="tab-link" data-tab="shop">Shop</button></li>
+    </ul>
+    </div>
+  </nav>
+
+  <!-- ====================== BANNER ====================== -->
+  <header>
+
+
+    <div class="inner">
+      <h1>Nemy Tael</h1>
+      <div class="tagline script">Queer Romance Author</div>
+    </div>
+
+  </header>
+
+  <main class="container">
+
+    <!-- ====================== BOOKS ====================== -->
+    <section id="books" class="tab-panel active">
+      <div class="panel-head">
+        <h2>My Books</h2>
+   
+        <div class="line"></div>
+      </div>
+
+      <div class="filters" id="filters"></div>
+      <div id="series-container"></div>
+    </section>
+
+    <!-- ====================== ABOUT ====================== -->
+    <section id="about" class="tab-panel">
+      <div class="panel-head">
+        <h2>About the Author</h2>
+       
+        <div class="line"></div>
+      </div>
+
+      <div class="about">
+        <div class="portrait-wrap">
+          <!-- Replace the ♡ with: <img src="photo.jpg" alt="Nemy Tael"> -->
+          <div class="portrait">♡</div>
+        </div>
+        <div class="about-text">
+        
+          <p>I'm a French bisexual author currently still deep into studies. I live in a small apartment alone, although I do get to enjoy the company of my neighbor's cat from time to time.</p>
+          <p>When I'm not writing, I get lost in books or go on rides with my motorcycle and friends.</p>
+
+         
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== CONTACT ====================== -->
+    <section id="contact" class="tab-panel">
+      <div class="panel-head">
+        <h2>If you want to say hello</h2>
+        <div class="line"></div>
+      </div>
+
+      <div class="contact">
+        <div class="contact-card">
+          <h3>Find me here</h3>
+          <p><a href="/cdn-cgi/l/email-protection#4d23282034392c2821632c383925223f0d2a202c2421632e2220"><span class="__cf_email__" data-cfemail="5e303b33272a3f3b32703f2b2a36312c1e39333f3732703d3133">[email&#160;protected]</span></a></p>
+          <div class="socials">
+            <a href="#">Instagram</a>
+            <a href="#">TikTok</a>
+            <a href="#">Goodreads</a>
+            <a href="#">Newsletter</a>
+          </div>
+        </div>
+
+        <!-- Create a free form at formspree.io and replace YOUR_FORM_ID -->
+        <form class="contact-card" action="https://formspree.io/f/xgaelvow" method="POST">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+          <button type="submit" class="btn">Send</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ====================== SHOP ====================== -->
+    <section id="shop" class="tab-panel">
+      <div class="panel-head">
+        <h2>Shop</h2>
+      </div>
+
+      <div class="shop-grid">
+        <div class="product">
+          <span class="badge">New</span>
+          <div class="thumb">📕</div>
+          <h4>Salt &amp; Honey</h4>
+          <div class="desc">Signed paperback</div>
+          <div class="price">€16.00</div>
+          <a class="btn" href="#">Add to cart</a>
+        </div>
+        <div class="product">
+          <div class="thumb">📚</div>
+          <h4>Harbour Lights — Complete Series</h4>
+          <div class="desc">3 signed paperbacks</div>
+          <div class="price">€42.00</div>
+          <a class="btn" href="#">Add to cart</a>
+        </div>
+        <div class="product">
+          <div class="thumb">📘</div>
+          <h4>Midnight in Montmartre</h4>
+          <div class="desc">Signed hardcover</div>
+          <div class="price">€24.00</div>
+          <a class="btn" href="#">Add to cart</a>
+        </div>
+        <div class="product">
+          <div class="thumb">🔖</div>
+          <h4>Bookmark Set</h4>
+          <div class="desc">4 illustrated bookmarks</div>
+          <div class="price">€8.00</div>
+          <a class="btn" href="#">Add to cart</a>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <img src="images/logo-color.png" alt="" style="height:56px;display:block;margin:0 auto 10px">
+    <span class="script">Nemy Tael</span>
+    © <span id="year"></span> Nemy Tael · All rights reserved
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    /* =====================================================================
+       YOUR BOOKS — edit this list to add series and books.
+       COVER IMAGES: put your files in the folder  images/covers/
+       and set   cover: "images/covers/my-book.jpg"   on each book.
+       Recommended size: 600 x 900 px (2:3 ratio), JPG or PNG.
+       If a book has no "cover", a coloured placeholder is shown instead.
+       ===================================================================== */
+    const SERIES = [
+      {
+        name: "From Darkness",
+        tag: "Series · Ongoing",
+        color: "pink",
+        description: "Three interconnected stories with characters on a healing path from their pasts.",
+        books: [
+          { title: "What We Built from Ruins", number: 1, year: 2026, type: "MMMM romance",
+            blurb: "Kael wanted to escape his abusive mother, not fall for his three military instructors.",
+           cover: "", gradient: "linear-gradient(160deg,#A56BE2,#5a34a8)", buy: "#" },
+      
+        ]
+      }
+    ];
+
+    /* ---------- Render series & books ---------- */
+    const container = document.getElementById('series-container');
+    const filters = document.getElementById('filters');
+
+    function renderBooks(filter = 'all') {
+      container.innerHTML = '';
+      SERIES.filter(s => filter === 'all' || s.name === filter).forEach(s => {
+        const sec = document.createElement('section');
+        sec.className = 'series';
+        sec.innerHTML = `
+          <div class="series-head">
+            <h3>${s.name}</h3>
+            <span class="tag ${s.color}">${s.tag}</span>
+          </div>
+          <p class="series-desc">${s.description}</p>
+          <div class="books-grid">
+            ${s.books.map(b => `
+              <article class="book">
+                <div class="cover ${b.cover ? 'has-img' : ''}" style="background:${b.gradient}">
+                  ${b.cover ? `<img src="${b.cover}" alt="${b.title} cover">` : ''}
+                  ${b.number ? `<span class="num">${b.number}</span>` : ''}
+                  ${b.cover ? '' : `<span>${b.title}</span>`}
+                </div>
+                <h4>${b.title}</h4>
+                <div class="meta">${b.type} · ${b.year}</div>
+                <p>${b.blurb}</p>
+                <div class="tropes">${b.tropes.map(t => `<span>${t}</span>`).join('')}</div>
+              </article>`).join('')}
+          </div>`;
+        container.appendChild(sec);
+      });
+    }
+
+    function renderFilters() {
+      const names = ['all', ...SERIES.map(s => s.name)];
+      filters.innerHTML = names.map((n, i) =>
+        `<button class="chip ${i === 0 ? 'active' : ''}" data-filter="${n}">${n === 'all' ? 'All books' : n}</button>`).join('');
+      filters.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
+        filters.querySelectorAll('.chip').forEach(x => x.classList.remove('active'));
+        c.classList.add('active');
+        renderBooks(c.dataset.filter);
+      }));
+    }
+    renderFilters();
+    renderBooks();
+
+    /* ---------- Tabs ---------- */
+    function openTab(id) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-link').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelector(`.tab-link[data-tab="${id}"]`).classList.add('active');
+      history.replaceState(null, '', '#' + id);
+      document.querySelector('nav').scrollIntoView({ behavior: 'smooth' });
+    }
+    document.querySelectorAll('.tab-link').forEach(b => b.addEventListener('click', () => openTab(b.dataset.tab)));
+    const hash = location.hash.replace('#', '');
+    if (hash && document.getElementById(hash)) openTab(hash);
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a367b6c6bff6592b',t:'MTc4ODYzNzMxMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
