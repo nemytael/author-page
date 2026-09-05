@@ -152,18 +152,17 @@
     }
     .modal-bg.open { display: flex; animation: fade .25s ease; }
     .modal {
-      background: var(--card); border-radius: 22px; max-width: 900px; width: 100%; max-height: 90vh; overflow: auto;
-      display: grid; grid-template-columns: 300px 1fr; position: relative; box-shadow: 0 30px 80px rgba(42,33,64,.35);
+      background: var(--card); border-radius: 22px; max-width: 880px; width: 100%; max-height: 90vh; overflow: auto;
+      display: grid; grid-template-columns: 300px 1fr; align-items: center; position: relative; box-shadow: 0 30px 80px rgba(42,33,64,.35);
     }
-    .modal .m-cover { min-height: 100%; display: flex; align-items: flex-end; padding: 22px; color: #fff; font-family: "Cormorant Garamond", serif; font-size: 1.6rem; position: relative; overflow: hidden; border-radius: 22px 0 0 22px; }
-    .modal .m-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .modal .m-cover { align-self: center; aspect-ratio: 2/3; display: flex; align-items: flex-end; padding: 22px; color: #fff; font-family: "Cormorant Garamond", serif; font-size: 1.6rem; position: relative; overflow: hidden; border-radius: 14px; margin: 24px 0 24px 24px; }
+    .modal .m-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; }
+    .modal .m-cover.has-img { padding: 0; background: #f0ecf5 !important; }
     .modal .m-body { padding: 40px 44px; }
     .modal .m-series { font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--rose-deep); }
     .modal h3 { font-size: 2.4rem; margin: 6px 0 4px; }
     .modal .m-meta { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
     .modal .m-desc { font-size: 1rem; color: #4a3f5c; white-space: pre-line; }
-    .modal .tropes { margin: 20px 0; display: flex; flex-wrap: wrap; gap: 6px; }
-    .modal .tropes span { font-size: .72rem; padding: 4px 12px; border-radius: 999px; background: var(--blue-soft); color: var(--blue-deep); }
     .modal .m-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
     .modal .close {
       position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%; border: none; cursor: pointer;
@@ -171,8 +170,7 @@
     }
     @media (max-width: 720px) {
       .modal { grid-template-columns: 1fr; }
-      .modal .m-cover { max-height: 320px; min-height: 0; border-radius: 22px 22px 0 0; }
-      .modal .m-cover img { position: relative; height: 320px; }
+      .modal .m-cover { width: 220px; margin: 24px auto 0; border-radius: 12px; }
       .modal .m-body { padding: 28px 24px; }
     }
 
@@ -187,8 +185,8 @@
       font-family: "Cormorant Garamond", serif; font-size: 1.35rem; line-height: 1.2;
       box-shadow: inset 0 -80px 80px -40px rgba(0,0,0,.35);
     }
-    .cover.has-img { box-shadow: 0 10px 24px rgba(42,33,64,.18); background: #eee; }
-    .cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cover.has-img { box-shadow: 0 10px 24px rgba(42,33,64,.18); background: #f0ecf5 !important; }
+    .cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; }
     .cover .num {
       position: absolute; top: 12px; left: 12px; width: 32px; height: 32px; border-radius: 50%;
       background: rgba(255,255,255,.85); color: var(--rose-deep); font-family: "Nunito", sans-serif; font-weight: 600; font-size: .85rem;
@@ -197,8 +195,6 @@
     .book h4 { font-size: 1.35rem; }
     .book .meta { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 2px 0 10px; }
     .book p { font-size: .92rem; flex-grow: 1; color: #5b4f5e; }
-    .book .tropes { margin: 12px 0 2px; display: flex; flex-wrap: wrap; gap: 6px; }
-    .book .tropes span { font-size: .7rem; padding: 3px 10px; border-radius: 999px; background: var(--blue-soft); color: var(--blue-deep); }
 
     /* ====================== About ====================== */
     .about { display: grid; grid-template-columns: 300px 1fr; gap: 60px; align-items: start; }
@@ -357,7 +353,7 @@
       <div class="contact">
         <div class="contact-card">
           <h3>Find me here</h3>
-          <p><a href="/cdn-cgi/l/email-protection#84eae1e9fdf0e5e1e8aae5f1f0ecebf6c4e3e9e5ede8aae7ebe9"><span class="__cf_email__" data-cfemail="9ef0fbf3e7eafffbf2b0ffebeaf6f1ecdef9f3fff7f2b0fdf1f3">[email&#160;protected]</span></a></p>
+          <p><a href="/cdn-cgi/l/email-protection#4e202b23373a2f2b22602f3b3a26213c0e29232f2722602d2123"><span class="__cf_email__" data-cfemail="5739323a2e2336323b793622233f382517303a363e3b7934383a">[email&#160;protected]</span></a></p>
           <div class="socials">
             <a href="https://www.instagram.com/nemytael_author">Instagram</a>
             <a href="https://www.tiktok.com/@nemytael_author">TikTok</a>
@@ -431,7 +427,6 @@
         <h3 id="m-title"></h3>
         <div class="m-meta" id="m-meta"></div>
         <div class="m-desc" id="m-desc"></div>
-        <div class="tropes" id="m-tropes"></div>
         <div class="m-actions" id="m-actions"></div>
       </div>
     </div>
@@ -450,6 +445,7 @@
        and set   cover: "images_github/my-book.jpg"   on each book.
        Recommended size: 600 x 900 px (2:3 ratio), JPG or PNG.
        If a book has no "cover", a coloured placeholder is shown instead.
+       type         = e.g. "MM romance", "Sapphic romance" (shown under the title).
        blurb        = short teaser shown on the card.
        description  = full description shown when the reader clicks the book
                       (use \n\n between paragraphs).
@@ -462,10 +458,9 @@
         color: "pink",
         description: "Three interconnected stories with characters on a healing path from their pasts.",
         books: [
-          { title: "What We Built from Ruins", number: 1, year: 2026, type: "MMMM romance",
+          { title: "What We Built from Ruins", number: 1, type: "MMMM romance",
             blurb: "Kael wanted to escape his abusive mother, not fall for his three military instructors.",
             description: "Kael wanted to escape his abusive mother, not fall for his three military instructors.\n\nWhen he enlists, all he is looking for is a way out — a bunk, a routine, and a life where nobody raises a hand to him. What he finds instead are three men who see straight through his armour: the patient one, the sharp one, and the one who never says what he means.\n\nHealing was never part of the plan. Neither was love. But some things are built from ruins.\n\nA slow-burn MMMM romance about trust, found family and learning that you are allowed to be cared for.",
-            tropes: ["Slow burn", "Found family", "Hurt / comfort", "Military"],
             cover: "images_github/wwbfr_cover.png", gradient: "linear-gradient(160deg,#A56BE2,#5a34a8)", buy: "#" }
         ]
       }
@@ -480,12 +475,12 @@
       const b = ALL[i]; if (!b) return;
       const cov = document.getElementById('m-cover');
       cov.style.background = b.gradient || 'var(--grad)';
-      cov.innerHTML = b.cover ? `<img src="${b.cover}" alt="${b.title} cover" onerror="this.remove()">` : `<span>${b.title}</span>`;
+      cov.classList.toggle('has-img', !!b.cover);
+      cov.innerHTML = b.cover ? `<img src="${b.cover}" alt="${b.title} cover" onerror="this.remove();this.parentNode.classList.remove('has-img');this.parentNode.innerHTML='<span>${b.title}</span>'">` : `<span>${b.title}</span>`;
       document.getElementById('m-series').textContent = b.series + (b.number ? ` · Book ${b.number}` : '');
       document.getElementById('m-title').textContent = b.title;
-      document.getElementById('m-meta').textContent = `${b.type || ''}${b.year ? ' · ' + b.year : ''}`;
+      document.getElementById('m-meta').textContent = b.type || '';
       document.getElementById('m-desc').textContent = b.description || b.blurb || '';
-      document.getElementById('m-tropes').innerHTML = (b.tropes || []).map(t => `<span>${t}</span>`).join('');
       const acts = [];
       if (b.buy && b.buy !== '#') acts.push(`<a class="btn" href="${b.buy}" target="_blank" rel="noopener">Buy the book</a>`);
       acts.push(`<a class="btn ghost" href="#" onclick="closeBook(); openTab('shop'); return false;">Visit the shop</a>`);
@@ -525,7 +520,7 @@
                   ${b.cover ? '' : `<span>${b.title}</span>`}
                 </div>
                 <h4>${b.title}</h4>
-                <div class="meta">${b.type} · ${b.year}</div>
+                <div class="meta">${b.type || ''}</div>
                 <p>${b.blurb}</p>
                 <div class="more">Read more</div>
               </article>`).join('')}
@@ -562,5 +557,5 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a368513638fa88f4',t:'MTc4ODY0MzYzOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3685e8f4b417012',t:'MTc4ODY0NDE4NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
