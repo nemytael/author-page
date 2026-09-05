@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nemy Tael — Queer Romance Author</title>
-  
+  <meta name="description" content="Official website of queer romance author Nemy Tael.">
 
   <!-- Elegant fonts (loaded online; fallbacks are used offline) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,6 +50,18 @@
     .script { font-family: "Great Vibes", "Brush Script MT", cursive; font-weight: 400; }
 
     /* ====================== Banner ====================== */
+    header .inner { position: relative; }
+    header::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 5px;
+      background: linear-gradient(90deg, #e40303, #ff8c00, #ffed00, #008026, #24408e, #732982);
+    }
+    header h1 {
+      font-size: 3.4rem; letter-spacing: .06em; font-weight: 500;
+      text-shadow: 0 6px 30px rgba(60,30,110,.35);
+    }
+    header .tagline {
+      font-size: 1.7rem; margin-top: 0; text-shadow: 0 3px 16px rgba(60,30,110,.35);
+    }
     header {
       position: relative;
       background: var(--grad);
@@ -240,7 +252,7 @@
   <nav>
     <div class="nav-inner">
     <div class="brand" onclick="openTab('books')">
-      <img src="images/logo-color.png" alt="NT logo">
+      <img src="images_github/logo-color.png" alt="NT logo">
       <span>Nemy Tael</span>
     </div>
     <ul>
@@ -288,7 +300,7 @@
       <div class="about">
         <div class="portrait-wrap">
           <!-- Replace the ♡ with: <img src="photo.jpg" alt="Nemy Tael"> -->
-          <div class="portrait"><img src="images_github/logo_blanc" alt="Logo Nemy Tael"></div>
+          <div class="portrait"><img src="images_github/logo_blanc.png" alt="Logo Nemy Tael"></div>
         </div>
         <div class="about-text">
         
@@ -310,7 +322,7 @@
       <div class="contact">
         <div class="contact-card">
           <h3>Find me here</h3>
-          <p><a href="/cdn-cgi/l/email-protection#4d23282034392c2821632c383925223f0d2a202c2421632e2220"><span class="__cf_email__" data-cfemail="5e303b33272a3f3b32703f2b2a36312c1e39333f3732703d3133">[email&#160;protected]</span></a></p>
+          <p><a href="/cdn-cgi/l/email-protection#046a61697d706561682a6571706c6b76446369656d682a676b69"><span class="__cf_email__" data-cfemail="ed83888094998c8881c38c989985829fad8a808c8481c38e8280">[email&#160;protected]</span></a></p>
           <div class="socials">
             <a href="https://www.instagram.com/nemytael_author">Instagram</a>
             <a href="https://www.tiktok.com/@nemytael_author">TikTok</a>
@@ -375,7 +387,7 @@
   </main>
 
   <footer>
-    <img src="images/logo-color.png" alt="" style="height:56px;display:block;margin:0 auto 10px">
+    <img src="images_github/logo-color.png" alt="" style="height:56px;display:block;margin:0 auto 10px">
     <span class="script">Nemy Tael</span>
     © <span id="year"></span> Nemy Tael · All rights reserved
   </footer>
@@ -383,8 +395,8 @@
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     /* =====================================================================
        YOUR BOOKS — edit this list to add series and books.
-       COVER IMAGES: put your files in the folder  images/covers/
-       and set   cover: "images/covers/my-book.jpg"   on each book.
+       COVER IMAGES: put your files in the folder  images_github/
+       and set   cover: "images_github/my-book.jpg"   on each book.
        Recommended size: 600 x 900 px (2:3 ratio), JPG or PNG.
        If a book has no "cover", a coloured placeholder is shown instead.
        ===================================================================== */
@@ -397,8 +409,7 @@
         books: [
           { title: "What We Built from Ruins", number: 1, year: 2026, type: "MMMM romance",
             blurb: "Kael wanted to escape his abusive mother, not fall for his three military instructors.",
-           cover: "images_github/wwbfr_cover.png", gradient: "linear-gradient(160deg,#A56BE2,#5a34a8)", buy: "#" },
-      
+            cover: "images_github/wwbfr_cover.png", gradient: "linear-gradient(160deg,#A56BE2,#5a34a8)", buy: "#" }
         ]
       }
     ];
@@ -429,7 +440,7 @@
                 <h4>${b.title}</h4>
                 <div class="meta">${b.type} · ${b.year}</div>
                 <p>${b.blurb}</p>
-                <div class="tropes">${b.tropes.map(t => `<span>${t}</span>`).join('')}</div>
+                ${b.tropes && b.tropes.length ? `<div class="tropes">${b.tropes.map(t => `<span>${t}</span>`).join('')}</div>` : ''}
               </article>`).join('')}
           </div>`;
         container.appendChild(sec);
@@ -464,5 +475,5 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a367b6c6bff6592b',t:'MTc4ODYzNzMxMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a36834b5bd5e48a8',t:'MTc4ODY0MjQ3MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
