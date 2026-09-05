@@ -276,6 +276,16 @@
       .contact { grid-template-columns: 1fr; }
       .fun-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
     }
+
+    /* ======================FORM=====================*/
+    .form-status { margin-top: 14px; font-size: .9rem; min-height: 1.2em; }
+.form-status.error { color: #c0392b; }
+.btn[disabled] { opacity: .6; cursor: wait; transform: none; }
+.form-success { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; animation: fade .5s ease; }
+.form-success .heart { font-size: 2.6rem; color: var(--magenta); animation: beat 1.6s ease-in-out infinite; }
+@keyframes beat { 0%,100%{transform:scale(1)} 30%{transform:scale(1.15)} 45%{transform:scale(1)} 60%{transform:scale(1.1)} }
+.form-success h3 { font-size: 3rem; margin: 4px 0 10px; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.form-success p { color: var(--muted); margin-bottom: 24px; }
   </style>
 </head>
 <body>
@@ -369,15 +379,23 @@
         </div>
 
         <!-- Create a free form at formspree.io and replace YOUR_FORM_ID -->
-        <form class="contact-card" action="https://formspree.io/f/xgaelvow" method="POST">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required>
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
-          <label for="message">Message</label>
-          <textarea id="message" name="message" required></textarea>
-          <button type="submit" class="btn">Send</button>
-        </form>
+        <form class="contact-card" id="contact-form" action="https://formspree.io/f/xgaelvow" method="POST">
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name" required>
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" required>
+  <label for="message">Message</label>
+  <textarea id="message" name="message" required></textarea>
+  <button type="submit" class="btn" id="send-btn">Send</button>
+  <p class="form-status" id="form-status" role="status"></p>
+</form>
+
+<div class="contact-card form-success" id="form-success" hidden>
+  <span class="heart">♡</span>
+  <h3 class="script">Thank you!</h3>
+  <p>Your message has been sent successfully.</p>
+  <button class="btn ghost" type="button" onclick="resetForm()">Send another message</button>
+</div>
       </div>
     </section>
 
@@ -542,6 +560,46 @@
     if (hash && document.getElementById(hash)) openTab(hash);
 
     document.getElementById('year').textContent = new Date().getFullYear();
+
+const form = document.getElementById('contact-form');
+const statusEl = document.getElementById('form-status');
+const sendBtn = document.getElementById('send-btn');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  statusEl.textContent = '';
+  statusEl.classList.remove('error');
+  sendBtn.disabled = true;
+  sendBtn.textContent = 'Sending…';
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      form.reset();
+      form.hidden = true;
+      document.getElementById('form-success').hidden = false;
+    } else {
+      const data = await res.json().catch(() => ({}));
+      statusEl.textContent = (data.errors && data.errors.map(x => x.message).join(', ')) || 'Oops, something went wrong. Please try again.';
+      statusEl.classList.add('error');
+    }
+  } catch (err) {
+    statusEl.textContent = 'Network error. Please check your connection and try again.';
+    statusEl.classList.add('error');
+  } finally {
+    sendBtn.disabled = false;
+    sendBtn.textContent = 'Send';
+  }
+});
+
+function resetForm() {
+  document.getElementById('form-success').hidden = true;
+  form.hidden = false;
+}
+    
   </script>
 <script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a36872dc0cd29e5b',t:'MTc4ODY0NTAxNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
